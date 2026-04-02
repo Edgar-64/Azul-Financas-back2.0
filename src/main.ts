@@ -1,9 +1,8 @@
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+import { Module } from '@nestjs/common';
+import { PrismaModule } from './prisma/prisma.module';
+import { UsersModule } from './users/users.module';
 
-async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  await app.listen(process.env.PORT ?? 3030);
-  console.log('Servidor Rodando');
-}
-bootstrap();
+@Module({
+  imports: [PrismaModule, UsersModule],
+})
+export class AppModule {}
